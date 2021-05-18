@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Youtube Playlist Maker</title>
+
+<script>
+
+function updateUrl(url) {
+	//Get id of video
+	const videoId = url.split('=')[1];
+	// Append to playlist url
+	const currentPlaylistUrl = document.getElementById("urlToCopy").value;
+	document.getElementById("urlToCopy").value = `${currentPlaylistUrl}${videoId},`;
+	document.getElementById("url").value = "";
+}
+
+function clickToCopy() {
+	const copyTextElement = document.getElementById("urlToCopy");
+	copyTextElement.select();
+	copyTextElement.setSelectionRange(0,99999);
+	document.execCommand("copy");
+}
+
+</script>
+
+</head>
+
+<body>
+
+<div>
+	<input type="text" id="url"></input>
+	<button type="button" onclick="updateUrl(document.getElementById('url').value)">Add</button>
+</div>
+
+<div>
+	<input id="urlToCopy" readonly value="https://www.youtube.com/watch_videos?video_ids="></input>
+</div>
+<button onclick="clickToCopy()">Click to copy!</button>
+
+</body>
+</html>
